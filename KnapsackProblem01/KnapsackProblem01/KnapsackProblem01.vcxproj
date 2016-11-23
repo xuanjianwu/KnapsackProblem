@@ -78,6 +78,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="ProblemManager.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="BackTracing.cpp" />
+    <ClCompile Include="DynamicPlanning.cpp" />
+    <ClCompile Include="Greedy.cpp" />
+    <ClCompile Include="Main.cpp" />
+    <ClCompile Include="ProblemManager.cpp" />
+    <ClCompile Include="SimulatedAnealing.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
