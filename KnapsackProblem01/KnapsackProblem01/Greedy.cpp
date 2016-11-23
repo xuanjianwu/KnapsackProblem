@@ -27,7 +27,6 @@ void ProblemManager::Greedy(){
 		PQueue.pop();
 	}
 	clock_t endTime = clock();
-
 	//std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(6) << static_cast<double>(endTime - startTime) / CLOCKS_PER_SEC * 1000 << std::endl;
 	ShowAnswer(answers, AnswerInfo("Ì°ÐÄËã·¨", static_cast<double>(endTime - startTime) / CLOCKS_PER_SEC * 1000));
 }
