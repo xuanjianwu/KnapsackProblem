@@ -19,6 +19,8 @@ void ProblemManager::DynamicPlanning() {
     for (int i = 1; i <= capacity; i++) {
         for (int j = 0; j < ItemNum; j++) {
             PackageItem item = *ItemList[j];
+
+			// 背包装不下当前的item
             if (item.weight > i) {
                 if (j == 0) {
                     BagMatrix[j][i] = 0;
@@ -39,6 +41,8 @@ void ProblemManager::DynamicPlanning() {
             }
         }
     }
+
+	// 从价值矩阵找出所需的答案背包列表，矩阵的右上角开始
     std::vector<PackageItem> answers;
     auto leftSize = capacity;
     for (int i = ItemNum - 1; i >= 0; i--) {
@@ -56,6 +60,6 @@ void ProblemManager::DynamicPlanning() {
         }
     }
     clock_t endTime = clock();
-    std::cout << std::setprecision(4) << static_cast<double>(endTime - startTime) / CLOCKS_PER_SEC * 1000 << std::endl;
-    ShowAnswer(answers);
+	//std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(6) << static_cast<double>(endTime - startTime) / CLOCKS_PER_SEC * 1000 << std::endl;
+	ShowAnswer(answers, AnswerInfo("动态规划", static_cast<double>(endTime - startTime) / CLOCKS_PER_SEC * 1000));
 }

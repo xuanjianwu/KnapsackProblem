@@ -2,12 +2,15 @@
 #define PROBLEM_MANAGER_H
 
 #include "PackageItem.hpp"
+#include "AnswerInfo.hpp"
 #include <vector>
 #include <cstdlib>
 #include <ctime>
 #include <iostream>
 #include <string>
 #include <iomanip>
+#include <queue>
+#include <string>
 
 #define ItemNumMin 500
 #define ItemNumMax 1000
@@ -38,7 +41,7 @@ public:
     void SimulatedAnealing();
 
     void TestData();
-    void ShowAnswer(std::vector<PackageItem> answers);
+    void ShowAnswer(std::vector<PackageItem> answers, AnswerInfo answerInfo);
 };
 
 

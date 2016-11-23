@@ -78,6 +78,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="AnswerInfo.hpp" />
     <ClInclude Include="PackageItem.hpp" />
     <ClInclude Include="ProblemManager.h" />
   </ItemGroup>

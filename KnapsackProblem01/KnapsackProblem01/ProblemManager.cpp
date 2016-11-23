@@ -30,16 +30,18 @@ int ProblemManager::NextRandom(int min, int max) {
     return std::rand() % (max - min) + min;
 }
 
-void ProblemManager::ShowAnswer(std::vector<PackageItem> answers) {
-    std::cout << "Answer list:" << std::endl;
+void ProblemManager::ShowAnswer(std::vector<PackageItem> answers, AnswerInfo answerInfo) {
+	std::cout << "算法:  " << answerInfo.MethodName << std::endl << "计算时间:  " 
+		<< std::setiosflags(std::ios::fixed) << std::setprecision(2) << answerInfo.CalTime << " ms" << std::endl;
+    std::cout << "Answer:  ";
     int totalWeight = 0, TotalValue = 0;
-    for (int i = 0; i < answers.size(); i++) {
+    for (unsigned int i = 0; i < answers.size(); i++) {
         std::cout << answers[i].id << "  ";
         totalWeight += answers[i].weight;
         TotalValue += answers[i].value;
     }
     std::cout << std::endl;
-    std::cout << "Total weight: " << totalWeight << "  Bag Capacity: " << capacity << "  Total value: " << TotalValue << std::endl;
+	std::cout << "Weights: " << totalWeight << "  Values: " << TotalValue << std::endl << "Capacity: " << capacity << std::endl << std::endl;
 }
 
 void ProblemManager::TestData() {

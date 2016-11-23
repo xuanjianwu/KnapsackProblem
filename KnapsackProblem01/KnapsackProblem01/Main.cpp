@@ -3,6 +3,7 @@
 int main() {
     auto core = ProblemManager::GetInstance();
     core->DynamicPlanning();
-    system("pause");
+	core->Greedy();
+    //system("pause");
     return 0;
 }
