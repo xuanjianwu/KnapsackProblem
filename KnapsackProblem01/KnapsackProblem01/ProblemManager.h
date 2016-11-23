@@ -1,6 +1,14 @@
 #ifndef PROBLEM_MANAGER_H
 #define PROBLEM_MANAGER_H
 
+#include "PackageItem.hpp"
+#include <vector>
+#include <cstdlib>
+#include <ctime>
+#include <iostream>
+#include <string>
+#include <iomanip>
+
 #define ItemNumMin 500
 #define ItemNumMax 1000
 #define WeightMin 1
@@ -13,8 +21,8 @@ class ProblemManager {
 private:
     int capacity;
     int ItemNum;
-    int* WeightArr;
-    int* ValueArr;
+    PackageItem** ItemList;
+
     static ProblemManager* instance;
     ProblemManager();
     ProblemManager(const ProblemManager&) = delete;
@@ -28,6 +36,9 @@ public:
     void Greedy();
     void BackTracing();
     void SimulatedAnealing();
+
+    void TestData();
+    void ShowAnswer(std::vector<PackageItem> answers);
 };
 
 

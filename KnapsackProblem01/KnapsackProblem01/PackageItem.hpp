@@ -1,16 +1,14 @@
 #ifndef PACKAGE_ITEM_H
 #define PACKAGE_ITEM_H
 
-#include <string>
 
 class PackageItem {
-private:
-    std::string name;
+public:
+    int id;
     int weight;
     int value;
-public:
-    PackageItem(std::string name, int weight, int value) {
-        this->name = name;
+    PackageItem(int id, int weight, int value) {
+        this->id = id;
         this->weight = weight;
         this->value = value;
     }
