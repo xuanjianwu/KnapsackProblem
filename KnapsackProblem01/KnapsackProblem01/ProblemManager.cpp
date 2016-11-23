@@ -3,14 +3,17 @@
 #include <ctime>
 
 ProblemManager::ProblemManager() {
+    capacity = 0;
     std::srand(std::time(NULL));
     ItemNum = this->NextRandom(ItemNumMin, ItemNumMax);
     WeightArr = new int[ItemNum];
     ValueArr = new int[ItemNum];
     for (int i = 0; i < ItemNum; i++) {
         WeightArr[i] = this->NextRandom(WeightMin, WeightMax);
+        capacity += WeightArr[i];
         ValueArr[i] = this->NextRandom(ValueMin, ValueMax);
     }
+    capacity *= Ratio;
 }
 
 ProblemManager::~ProblemManager() {

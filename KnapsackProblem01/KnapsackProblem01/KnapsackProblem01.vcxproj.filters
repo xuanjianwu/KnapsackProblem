@@ -14,6 +14,9 @@
     <ClInclude Include="ProblemManager.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="PackageItem.hpp">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ProblemManager.cpp">

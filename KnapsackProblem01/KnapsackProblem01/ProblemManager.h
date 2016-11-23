@@ -7,9 +7,11 @@
 #define WeightMax 100
 #define ValueMin 1
 #define ValueMax 100
+#define Ratio 0.5
 
 class ProblemManager {
 private:
+    int capacity;
     int ItemNum;
     int* WeightArr;
     int* ValueArr;
@@ -30,4 +32,4 @@ public:
 
 
 
-#endif
+#endif /* PROBLEM_MANAGER_H */
