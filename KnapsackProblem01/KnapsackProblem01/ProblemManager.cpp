@@ -44,6 +44,14 @@ void ProblemManager::ShowAnswer(std::vector<PackageItem> answers, AnswerInfo ans
 	std::cout << "Weights: " << totalWeight << "  Values: " << TotalValue << std::endl << "Capacity: " << capacity << std::endl << std::endl;
 }
 
+void ProblemManager::ShowProblemInfo() {
+	std::cout << "01背包问题:" << std::endl
+		<< "背包问题规模:  " << ItemNum << std::endl
+		<< "背包的总容量:  " << capacity << std::endl
+		<< "物品重量范围:  " << WeightMin << "——" << WeightMax << std::endl
+		<< "物品价值范围:  " << ValueMin << "——" << ValueMax << std::endl << std::endl;
+}
+
 void ProblemManager::TestData() {
     capacity = 10;
     ItemNum = 5;

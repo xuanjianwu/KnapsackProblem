@@ -43,6 +43,7 @@ public:
 
     void TestData();
     void ShowAnswer(std::vector<PackageItem> answers, AnswerInfo answerInfo);
+	void ShowProblemInfo();
 };
 
 
