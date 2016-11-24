@@ -88,7 +88,7 @@
     <ClCompile Include="Greedy.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="ProblemManager.cpp" />
-    <ClCompile Include="SimulatedAnealing.cpp" />
+    <ClCompile Include="SimulatedAnnealing.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
