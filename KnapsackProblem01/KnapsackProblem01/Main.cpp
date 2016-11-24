@@ -4,6 +4,7 @@ int main() {
     auto core = ProblemManager::GetInstance();
     core->DynamicPlanning();
 	core->Greedy();
-    //system("pause");
+    core->BackTracing();
+    system("pause");
     return 0;
 }
