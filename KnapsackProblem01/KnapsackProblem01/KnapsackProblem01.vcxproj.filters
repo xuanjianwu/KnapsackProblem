@@ -34,10 +34,10 @@
     <ClCompile Include="BackTracing.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="SimulatedAnealing.cpp">
+    <ClCompile Include="Main.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="Main.cpp">
+    <ClCompile Include="SimulatedAnnealing.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
