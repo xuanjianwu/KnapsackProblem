@@ -7,6 +7,6 @@ int main() {
 	core->Greedy();
     core->BackTracing();
 	core->SimulatedAnealing();
-    //system("pause");
+    system("pause");
     return 0;
 }

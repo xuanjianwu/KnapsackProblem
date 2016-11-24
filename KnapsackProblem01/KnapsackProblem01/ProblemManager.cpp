@@ -33,10 +33,10 @@ int ProblemManager::NextRandom(int min, int max) {
 void ProblemManager::ShowAnswer(std::vector<PackageItem> answers, AnswerInfo answerInfo) {
 	std::cout << "算法:  " << answerInfo.MethodName << std::endl << "计算时间:  " 
 		<< std::setiosflags(std::ios::fixed) << std::setprecision(2) << answerInfo.CalTime << " ms" << std::endl;
-    std::cout << "Answer:  ";
+    //std::cout << "Answer:  ";
     int totalWeight = 0, TotalValue = 0;
     for (unsigned int i = 0; i < answers.size(); i++) {
-        std::cout << answers[i].id << "  ";
+        //std::cout << answers[i].id << "  ";
         totalWeight += answers[i].weight;
         TotalValue += answers[i].value;
     }
