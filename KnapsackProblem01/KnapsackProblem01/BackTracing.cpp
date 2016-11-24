@@ -68,7 +68,7 @@ double Knap::Bound(int i) {
 }
 
 void ProblemManager::BackTracing() {
-    TestData();
+    //TestData();
     clock_t startTime = clock();
 
     auto W = 0;

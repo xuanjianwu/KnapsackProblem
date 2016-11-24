@@ -11,6 +11,7 @@
 #include <iomanip>
 #include <queue>
 #include <string>
+#include <math.h>
 
 #define ItemNumMin 500
 #define ItemNumMax 1000

@@ -2,7 +2,7 @@
 
 
 void ProblemManager::DynamicPlanning() {
-    TestData();
+    //TestData();
     clock_t startTime = clock();
 
     int** BagMatrix = new int*[ItemNum];

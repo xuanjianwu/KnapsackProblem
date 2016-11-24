@@ -5,6 +5,7 @@ int main() {
     core->DynamicPlanning();
 	core->Greedy();
     core->BackTracing();
-    system("pause");
+	core->SimulatedAnealing();
+    //system("pause");
     return 0;
 }

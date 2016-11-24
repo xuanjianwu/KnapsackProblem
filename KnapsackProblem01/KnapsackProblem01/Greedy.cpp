@@ -7,7 +7,7 @@ struct cmp {
 };
 
 void ProblemManager::Greedy(){
-    TestData();
+    //TestData();
 	clock_t startTime = clock();
 
 	std::priority_queue<PackageItem, std::vector<PackageItem>, cmp> PQueue;
