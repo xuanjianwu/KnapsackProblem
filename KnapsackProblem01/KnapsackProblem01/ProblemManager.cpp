@@ -45,13 +45,23 @@ void ProblemManager::ShowAnswer(std::vector<PackageItem> answers, AnswerInfo ans
 }
 
 void ProblemManager::TestData() {
-    capacity = 10;
-    ItemNum = 5;
-    ItemList[0] = new PackageItem(0, 2, 6);
-    ItemList[1] = new PackageItem(1, 2, 3);
-    ItemList[2] = new PackageItem(2, 6, 5);
-    ItemList[3] = new PackageItem(3, 5, 4);
-    ItemList[4] = new PackageItem(4, 4, 6);
+    //capacity = 10;
+    //ItemNum = 5;
+    //ItemList[0] = new PackageItem(0, 2, 6);
+    //ItemList[1] = new PackageItem(1, 2, 3);
+    //ItemList[2] = new PackageItem(2, 6, 5);
+    //ItemList[3] = new PackageItem(3, 5, 4);
+    //ItemList[4] = new PackageItem(4, 4, 6);
+	capacity = 12;
+	ItemNum = 8;
+	ItemList[0] = new PackageItem(0, 2, 13);
+	ItemList[1] = new PackageItem(1, 1, 10);
+	ItemList[2] = new PackageItem(2, 3, 24);
+	ItemList[3] = new PackageItem(3, 2, 15);
+	ItemList[4] = new PackageItem(4, 4, 28);
+	ItemList[5] = new PackageItem(5, 5, 33);
+	ItemList[6] = new PackageItem(6, 3, 20);
+	ItemList[7] = new PackageItem(7, 1, 8);
 }
 
 ProblemManager* ProblemManager::GetInstance() {

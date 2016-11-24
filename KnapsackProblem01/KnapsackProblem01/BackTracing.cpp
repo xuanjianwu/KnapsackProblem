@@ -14,7 +14,7 @@ public:
     int cw;
     int cv;
     int bestV;
-    int* select;
+    int* selected;
     double Bound(int i);
     void Backtrack(int i);
     Knap(int c, int n, std::priority_queue<PackageItem, std::vector<PackageItem>, cmp> PQueue);
@@ -23,7 +23,7 @@ public:
 Knap::Knap(int c, int n, std::priority_queue<PackageItem, std::vector<PackageItem>, cmp> PQueue) {
     this->c = c;
     this->n = n;
-    select = new int[n];
+    selected = new int[n];
     for (int i = 0; i < n; i++) {
         this->ItemVec.push_back(PQueue.top());
         PQueue.pop();
@@ -39,6 +39,7 @@ void Knap::Backtrack(int i) {
         return;
     }
     if (cw + ItemVec[i].weight <= c) {
+		selected[i] = 1;
         cw += ItemVec[i].weight;
         cv += ItemVec[i].value;
         Backtrack(i + 1);
@@ -46,6 +47,7 @@ void Knap::Backtrack(int i) {
         cv -= ItemVec[i].value;
     }
     if (Bound(i + 1) > bestV) {
+		selected[i] = 0;
         Backtrack(i + 1);
     }
 }
@@ -88,5 +90,12 @@ void ProblemManager::BackTracing() {
 
     Knap knap(capacity, ItemNum, PQueue);
     knap.Backtrack(0);
-    std::cout << knap.bestV << std::endl;
+    //std::cout << knap.bestV << std::endl;
+	for (int i = 0; i < knap.n; i++) {
+		if (knap.selected[i] == 1) {
+			answers.push_back(knap.ItemVec[i]);
+		}
+	}
+	clock_t endTime = clock();
+	ShowAnswer(answers, AnswerInfo("»ØËÝ·¨", static_cast<double>(endTime - startTime) / CLOCKS_PER_SEC * 1000));
 }
