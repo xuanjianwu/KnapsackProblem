@@ -40,7 +40,9 @@ void ProblemManager::DynamicPlanning() {
 		}
 	}
 
-
+	//for (int i = 1; i <= capacity; i++) {
+	//	for (int j = 0; j < ItemNum; j++) {
+	//		PackageItem item = *ItemList[j];
 			//// 背包装不下当前的item
    //         if (item.weight > i) {
    //             if (j == 0) {
