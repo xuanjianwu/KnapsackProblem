@@ -40,30 +40,33 @@ void ProblemManager::DynamicPlanning() {
 		}
 	}
 
-	//for (int i = 1; i <= capacity; i++) {
+	//for (int i = 0; i <= capacity; i++) {
 	//	for (int j = 0; j < ItemNum; j++) {
 	//		PackageItem item = *ItemList[j];
-			//// 背包装不下当前的item
-   //         if (item.weight > i) {
-   //             if (j == 0) {
-   //                 BagMatrix[j][i] = 0;
-   //             }
-   //             else {
-   //                 BagMatrix[j][j] = BagMatrix[j - 1][i];
-   //             }
-   //         }
-   //         else {
-   //             if (j == 0) {
-   //                 BagMatrix[j][i] = item.value;
-   //                 continue;
-   //             }
-   //             else {
-   //                 int itemInBag = BagMatrix[j - 1][i - item.weight] + item.value;
-   //                 BagMatrix[j][i] = BagMatrix[j - 1][i] > itemInBag ? BagMatrix[j - 1][i] : itemInBag;
-   //             }
-   //         }
-    //    }
-    //}
+	//		// 背包装不下当前的item
+	//		if (i == 0) {
+	//			BagMatrix[j][i] = 0;
+	//		}
+ //           else if (item.weight > i) {
+ //               if (j == 0) {
+ //                   BagMatrix[j][i] = 0;
+ //               }
+ //               else {
+ //                   BagMatrix[j][j] = BagMatrix[j - 1][i];
+ //               }
+ //           }
+ //           else {
+ //               if (j == 0) {
+ //                   BagMatrix[j][i] = item.value;
+ //                   //continue;
+ //               }
+ //               else {
+ //                   int itemInBag = BagMatrix[j - 1][i - item.weight] + item.value;
+ //                   BagMatrix[j][i] = BagMatrix[j - 1][i] > itemInBag ? BagMatrix[j - 1][i] : itemInBag;
+ //               }
+ //           }
+ //       }
+ //   }
 
 	// 从价值矩阵找出所需的答案背包列表，矩阵的右上角开始
     std::vector<PackageItem> answers;
@@ -88,11 +91,11 @@ void ProblemManager::DynamicPlanning() {
     //    if (leftSize == 0) {
     //        break;
     //    }
-    //    if (leftSize > 0 && i == 0) {
+    //    if (leftSize >= item.weight && i == 0) {
     //        answers.push_back(item);
     //        break;
     //    }
-    //    if ((BagMatrix[i][leftSize] - BagMatrix[i - 1][leftSize - item.weight]) == item.value) {
+    //    if (i > 1 && ((BagMatrix[i][leftSize] - BagMatrix[i - 1][leftSize - item.weight]) == item.value)) {
     //        answers.push_back(item);
     //        leftSize -= item.weight;
     //    }
