@@ -16,49 +16,90 @@ void ProblemManager::DynamicPlanning() {
         }
     }
 
-    for (int i = 1; i <= capacity; i++) {
-        for (int j = 0; j < ItemNum; j++) {
-            PackageItem item = *ItemList[j];
+	for (int j = 0; j <= capacity; j++) {
+		for (int i = ItemNum - 1; i >= 0; i--) {
+			//PackageItem item = *ItemList[i];
+			if (j == 0) {
+				BagMatrix[i][j] = 0;
+			}
+			else if (i == ItemNum - 1) {
+				if (ItemList[i]->weight > j) {
+					BagMatrix[i][j] = 0;
+				}
+				else {
+					BagMatrix[i][j] = ItemList[i]->value;
+				}
+			}
+			else if (ItemList[i]->weight > j) {
+				BagMatrix[i][j] = BagMatrix[i + 1][j];
+			}
+			else if (ItemList[i]->weight <= j) {
+				int itemInBag = BagMatrix[i + 1][j - ItemList[i]->weight] + ItemList[i]->value;
+				BagMatrix[i][j] = BagMatrix[i + 1][j] > itemInBag ? BagMatrix[i + 1][j] : itemInBag;
+			}
+		}
+	}
 
-			// 背包装不下当前的item
-            if (item.weight > i) {
-                if (j == 0) {
-                    BagMatrix[j][i] = 0;
-                }
-                else {
-                    BagMatrix[j][j] = BagMatrix[j - 1][i];
-                }
-            }
-            else {
-                if (j == 0) {
-                    BagMatrix[j][i] = item.value;
-                    continue;
-                }
-                else {
-                    int itemInBag = BagMatrix[j - 1][i - item.weight] + item.value;
-                    BagMatrix[j][i] = BagMatrix[j - 1][i] > itemInBag ? BagMatrix[j - 1][i] : itemInBag;
-                }
-            }
-        }
-    }
+	//for (int i = 0; i <= capacity; i++) {
+	//	for (int j = 0; j < ItemNum; j++) {
+	//		PackageItem item = *ItemList[j];
+	//		// 背包装不下当前的item
+	//		if (i == 0) {
+	//			BagMatrix[j][i] = 0;
+	//		}
+ //           else if (item.weight > i) {
+ //               if (j == 0) {
+ //                   BagMatrix[j][i] = 0;
+ //               }
+ //               else {
+ //                   BagMatrix[j][j] = BagMatrix[j - 1][i];
+ //               }
+ //           }
+ //           else {
+ //               if (j == 0) {
+ //                   BagMatrix[j][i] = item.value;
+ //                   //continue;
+ //               }
+ //               else {
+ //                   int itemInBag = BagMatrix[j - 1][i - item.weight] + item.value;
+ //                   BagMatrix[j][i] = BagMatrix[j - 1][i] > itemInBag ? BagMatrix[j - 1][i] : itemInBag;
+ //               }
+ //           }
+ //       }
+ //   }
 
 	// 从价值矩阵找出所需的答案背包列表，矩阵的右上角开始
     std::vector<PackageItem> answers;
     auto leftSize = capacity;
-    for (int i = ItemNum - 1; i >= 0; i--) {
-        PackageItem item = *ItemList[i];
-        if (leftSize == 0) {
-            break;
-        }
-        if (leftSize > 0 && i == 0) {
-            answers.push_back(item);
-            break;
-        }
-        if ((BagMatrix[i][leftSize] - BagMatrix[i - 1][leftSize - item.weight]) == item.value) {
-            answers.push_back(item);
-            leftSize -= item.weight;
-        }
-    }
+
+	for (int i = 0; i < ItemNum; i++) {
+		PackageItem item = *ItemList[i];
+		if (leftSize == 0) {
+			break;
+		}
+		if (i == ItemNum - 1 && item.weight <= leftSize) {
+			answers.push_back(item);
+		}
+		else if (BagMatrix[i][leftSize] - BagMatrix[i + 1][leftSize - item.weight] == item.value) {
+			answers.push_back(item);
+			leftSize -= item.weight;
+		}
+	}
+
+    //for (int i = ItemNum - 1; i >= 0; i--) {
+    //    PackageItem item = *ItemList[i];
+    //    if (leftSize == 0) {
+    //        break;
+    //    }
+    //    if (leftSize >= item.weight && i == 0) {
+    //        answers.push_back(item);
+    //        break;
+    //    }
+    //    if (i > 1 && ((BagMatrix[i][leftSize] - BagMatrix[i - 1][leftSize - item.weight]) == item.value)) {
+    //        answers.push_back(item);
+    //        leftSize -= item.weight;
+    //    }
+    //}
     clock_t endTime = clock();
 	//std::cout << std::setiosflags(std::ios::fixed) << std::setprecision(6) << static_cast<double>(endTime - startTime) / CLOCKS_PER_SEC * 1000 << std::endl;
 	ShowAnswer(answers, AnswerInfo("动态规划", static_cast<double>(endTime - startTime) / CLOCKS_PER_SEC * 1000));
