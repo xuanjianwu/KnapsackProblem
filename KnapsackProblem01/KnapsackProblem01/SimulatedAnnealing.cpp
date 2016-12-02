@@ -17,13 +17,14 @@ void ProblemManager::SimulatedAnealing() {
     double t = t0;
     double a = 0.95f;
     double e = 0.0001f;
-    int L = 10 * ItemNum;
+    //int L = 10 * ItemNum;
+	int L = 30;
 
 	std::cout << "初始温度:  " << t0 << "  退火系数:  " << a << std::setiosflags(std::ios::fixed) << std::setprecision(5) << "  停止准则系数:  " << e << "  平衡参数:  " << L << std::endl;
 
     int i, j;
     while (t > e) {
-        std::srand(std::time(NULL));
+		std::srand((unsigned)std::time(NULL));
         for (int k = 0; k < L; k++) {
             i = std::rand() % ItemNum;
             if (solution[i] == 0) {
@@ -41,7 +42,7 @@ void ProblemManager::SimulatedAnealing() {
 					dw = ItemList[i]->weight - ItemList[j]->weight;
 					dv = ItemList[i]->weight - ItemList[j]->value;
 					if (w + dw <= capacity) {
-						if (std::exp(dv / t) || dv > 0) {
+						if ((dv > 0) || (((double)std::rand() / RAND_MAX) <= std::exp(dv / t))) {
 							solution[i] = 1;
 							solution[j] = 0;
 							w += dw;
@@ -59,7 +60,7 @@ void ProblemManager::SimulatedAnealing() {
 				dw = ItemList[j]->weight - ItemList[i]->weight;
 				dv = ItemList[j]->value - ItemList[i]->value;
 				if (w + dw <= capacity) {
-					if (std::exp(dv / t) || dv > 0) {
+					if ((dv > 0) || (((double)std::rand() / RAND_MAX) <= std::exp(dv / t))) {
 						solution[i] = 0;
 						solution[j] = 1;
 						w += dw;

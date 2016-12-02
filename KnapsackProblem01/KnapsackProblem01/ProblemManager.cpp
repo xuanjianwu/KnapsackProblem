@@ -3,7 +3,7 @@
 
 ProblemManager::ProblemManager() {
     capacity = 0;
-    std::srand(std::time(NULL));
+	std::srand((unsigned)std::time(NULL));
     ItemNum = this->NextRandom(ItemNumMin, ItemNumMax);
     ItemList = new PackageItem*[ItemNum];
     for (int i = 0; i < ItemNum; i++) {
