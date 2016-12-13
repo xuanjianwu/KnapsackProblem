@@ -12,6 +12,7 @@
 #include <queue>
 #include <string>
 #include <math.h>
+#include <algorithm>
 
 #define ItemNumMin 500
 #define ItemNumMax 1000

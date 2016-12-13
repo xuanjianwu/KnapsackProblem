@@ -12,6 +12,11 @@ public:
         this->weight = weight;
         this->value = value;
     }
+	PackageItem(PackageItem* a){
+		this->id = a->id;
+		this->weight = a->weight;
+		this->value = a->value;
+	}
 };
 
 

@@ -6,6 +6,10 @@ struct cmp {
     }
 };
 
+bool compare2(PackageItem a, PackageItem b) {
+	return ((double)a.value / a.weight) > ((double)b.value / b.weight);
+}
+
 class Knap {
 public:
     std::vector<PackageItem> ItemVec;
@@ -17,16 +21,17 @@ public:
     int* selected;
     double Bound(int i);
     void Backtrack(int i);
-    Knap(int c, int n, std::priority_queue<PackageItem, std::vector<PackageItem>, cmp> PQueue);
+	Knap(int c, int n, PackageItem** PQueue);
 };
 
-Knap::Knap(int c, int n, std::priority_queue<PackageItem, std::vector<PackageItem>, cmp> PQueue) {
+Knap::Knap(int c, int n, PackageItem** PQueue) {
     this->c = c;
     this->n = n;
     selected = new int[n];
     for (int i = 0; i < n; i++) {
-        this->ItemVec.push_back(PQueue.top());
-        PQueue.pop();
+        //this->ItemVec.push_back(PQueue.top());
+        //PQueue.pop();
+		this->ItemVec.push_back(PQueue[i]);
     }
     cw = 0;
     cv = 0;
@@ -73,11 +78,19 @@ void ProblemManager::BackTracing() {
 
     auto W = 0;
 
-    std::priority_queue<PackageItem, std::vector<PackageItem>, cmp> PQueue;
-    for (int i = 0; i < ItemNum; i++) {
-        PQueue.push(*ItemList[i]);
-        W += ItemList[i]->weight;
-    }
+	PackageItem** PQueue;
+	PQueue = new PackageItem*[ItemNum];
+	for (int i = 0; i < ItemNum; i++) {
+		PQueue[i] = new PackageItem(ItemList[i]);
+		W += ItemList[i]->weight;
+	}
+	std::sort(PQueue, PQueue + ItemNum, compare2);
+
+    //std::priority_queue<PackageItem, std::vector<PackageItem>, cmp> PQueue;
+    //for (int i = 0; i < ItemNum; i++) {
+    //    PQueue.push(*ItemList[i]);
+    //    W += ItemList[i]->weight;
+    //}
     std::vector<PackageItem> answers;
     if (W <= capacity) {
         for (int i = 0; i < ItemNum; i++) {

@@ -16,9 +16,9 @@ void ProblemManager::SimulatedAnealing() {
     double t0 = 500;
     double t = t0;
     double a = 0.95f;
-    double e = 0.0001f;
-    //int L = 10 * ItemNum;
-	int L = 30;
+    double e = 0.001f;
+    int L = 10 * ItemNum;
+	//int L = 30;
 
 	std::cout << "初始温度:  " << t0 << "  退火系数:  " << a << std::setiosflags(std::ios::fixed) << std::setprecision(5) << "  停止准则系数:  " << e << "  平衡参数:  " << L << std::endl;
 
