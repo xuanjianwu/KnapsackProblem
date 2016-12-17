@@ -19,6 +19,7 @@ public:
     int cv;
     int bestV;
     int* selected;
+	int* best;
     double Bound(int i);
     void Backtrack(int i);
 	Knap(int c, int n, PackageItem** PQueue);
@@ -28,6 +29,7 @@ Knap::Knap(int c, int n, PackageItem** PQueue) {
     this->c = c;
     this->n = n;
     selected = new int[n];
+	best = new int[n];
     for (int i = 0; i < n; i++) {
         //this->ItemVec.push_back(PQueue.top());
         //PQueue.pop();
@@ -40,7 +42,12 @@ Knap::Knap(int c, int n, PackageItem** PQueue) {
 
 void Knap::Backtrack(int i) {
     if (i >= n) {
-        bestV = cv;
+		if (cv > bestV) {
+			for (int i = 0; i < n; i++) {
+				best[i] = selected[i];
+			}
+			bestV = cv;
+		}     
         return;
     }
     if (cw + ItemVec[i].weight <= c) {
@@ -50,16 +57,16 @@ void Knap::Backtrack(int i) {
         Backtrack(i + 1);
         cw -= ItemVec[i].weight;
         cv -= ItemVec[i].value;
-    }
-    if (Bound(i + 1) > bestV) {
 		selected[i] = 0;
+    }
+    if (Bound(i + 1) > bestV) {	
         Backtrack(i + 1);
     }
 }
 
 double Knap::Bound(int i) {
     int leftSize = c - cw;
-    int mv = cv;
+    double mv = cv;
 
     while (i < n && ItemVec[i].weight <= leftSize) {
         leftSize -= ItemVec[i].weight;
@@ -67,7 +74,7 @@ double Knap::Bound(int i) {
         i++;
     }
     if (i < n) {
-        mv += ItemVec[i].value / ItemVec[i].weight * leftSize;
+        mv += ((double)ItemVec[i].value) / ItemVec[i].weight * leftSize;
     }
     return mv;
 }
@@ -105,7 +112,7 @@ void ProblemManager::BackTracing() {
     knap.Backtrack(0);
     //std::cout << knap.bestV << std::endl;
 	for (int i = 0; i < knap.n; i++) {
-		if (knap.selected[i] == 1) {
+		if (knap.best[i] == 1) {
 			answers.push_back(knap.ItemVec[i]);
 		}
 	}
